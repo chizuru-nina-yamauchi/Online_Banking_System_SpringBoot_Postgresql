@@ -1,5 +1,11 @@
 ### Assignment: Enhance the Online Banking System with Transaction Management
 
+Assignment created and guided with README file by Safwan kher(https://github.com/safwan-kher).
+
+---
+README and instruction by Safwan kher.
+
+
 #### Objective:
 Extend the functionality of an existing Online Banking System by incorporating advanced transaction management using `@Transactional` and `@Modifying` annotations. This involves creating services for opening new accounts, depositing money, withdrawing money, and transferring funds between accounts. Additionally, update the Thymeleaf templates to allow users to interact with these new functionalities using Bootstrap 5 for styling.
 
@@ -201,3 +207,26 @@ This template includes a form for transferring money between two accounts.
 ```
 
 These templates provide a comprehensive user interface for the Online Banking System, allowing users to manage their accounts and perform various transactions efficiently. The use of Bootstrap 5 ensures that the interface is modern and responsive.
+
+
+
+---
+
+Result by Chizuru Yamauchi
+
+
+![pic1](./src/main/resources/pics/pic1.png)
+![pic2](./src/main/resources/pics/pic2.png)
+![pic3](./src/main/resources/pics/pic3.png)
+![pic4](./src/main/resources/pics/pic4.png)
+
+
+- *Before transfer money*
+
+![pic6](./src/main/resources/pics/pic6.png)
+
+![pic5](./src/main/resources/pics/pic5.png)
+
+- *After transfer money*
+
+![pic7](./src/main/resources/pics/pic7.png)
