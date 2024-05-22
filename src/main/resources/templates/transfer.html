@@ -8,6 +8,13 @@
 <body>
 <div class="container mt-4">
     <h1>Transfer Money</h1>
+
+
+    <div class="container mt-4">
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+
     <form th:action="@{/transactions/transfer}" method="post" class="mt-3">
         <div class="mb-3">
             <label for="fromAccount" class="form-label">From Account Number</label>

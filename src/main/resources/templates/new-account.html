@@ -10,6 +10,10 @@
     <h1>Open a New Account</h1>
 
 
+    <div class="container mt-4">
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
+        </div>
 
     <form th:action="@{/accounts/new}" method="post" class="mt-3">
         <div class="mb-3">

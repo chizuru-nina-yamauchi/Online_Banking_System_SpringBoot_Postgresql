@@ -8,9 +8,13 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class BankingServiceImpl implements BankingService{
+
+    private static final Logger logger = LoggerFactory.getLogger(BankingServiceImpl.class);
 
     @Autowired
     private AccountRepository repository;
@@ -23,7 +27,7 @@ public class BankingServiceImpl implements BankingService{
         account.setBalance(initialDeposit);
         account.setAccountType(accountType);
         repository.save(account);
-        System.out.println("Opening a new account of type " + accountType + " with initial deposit of " + initialDeposit);
+        logger.info("Opening a new account of type {} with initial deposit of {}", accountType, initialDeposit);
     }
 
     @Override
@@ -34,10 +38,11 @@ public class BankingServiceImpl implements BankingService{
         if (account != null) {
             account.setBalance(account.getBalance() + amount);
             repository.save(account);
+            logger.info("Depositing {} to account number {}", amount, accountNumber);
         } else {
-            System.out.println("Account number " + accountNumber + " not found");
+            logger.warn("Account number {} not found", accountNumber);
         }
-        System.out.println("Depositing " + amount + " to account number " + accountNumber);
+
     }
 
     @Override
@@ -49,13 +54,14 @@ public class BankingServiceImpl implements BankingService{
             if (account.getBalance() >= amount) {
                 account.setBalance(account.getBalance() - amount);
                 repository.save(account);
+                logger.info("Withdrawing {} from account number {}", amount, accountNumber);
             } else {
-                System.out.println("Insufficient balance in account number " + accountNumber);
+                logger.warn("Insufficient balance in account number {}", accountNumber);
             }
         } else {
-            System.out.println("Account number " + accountNumber + " not found");
+            logger.warn("Account number {} not found", accountNumber);
         }
-        System.out.println("Withdrawing " + amount + " from account number " + accountNumber);
+
     }
 
     @Override
@@ -66,7 +72,7 @@ public class BankingServiceImpl implements BankingService{
         depositMoney(toAccount, amount);
 
 
-        System.out.println("Transferring " + amount + " from account number " + fromAccount + " to account number " + toAccount);
+        logger.info("Transferring {} from account number {} to account number {}", amount, fromAccount, toAccount);
     }
 
 }

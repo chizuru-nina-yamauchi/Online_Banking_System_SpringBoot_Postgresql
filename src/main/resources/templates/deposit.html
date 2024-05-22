@@ -8,6 +8,13 @@
 <body>
 <div class="container mt-4">
     <h1>Deposit Money</h1>
+
+
+    <div class="container mt-4">
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+
     <form th:action="@{/transactions/deposit}" method="post" class="mt-3">
         <div class="mb-3">
             <label for="accountNumber" class="form-label">Account Number</label>

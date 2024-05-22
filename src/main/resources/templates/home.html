@@ -8,6 +8,15 @@
 <body>
 <div class="container mt-4">
     <h1>Welcome to the Online Banking System</h1>
+
+    <div class="container mt-4">
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+
+
+
+
     <div class="row">
         <div class="col-md-4">
             <a th:href="@{/accounts/new}" class="btn btn-success">Open New Account</a>
