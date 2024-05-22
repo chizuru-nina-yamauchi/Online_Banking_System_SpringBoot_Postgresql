@@ -21,14 +21,14 @@ public class BankingController {
         return "home";
     }
 
-    @GetMapping("/account/new")
+    @GetMapping("/accounts/new")
     public String showNewAccountForm(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
         return "new-account";
     }
 
-   @PostMapping("/account/new")
+   @PostMapping("/accounts/new")
     public String openNewAccount(@RequestParam String accountType, @RequestParam double initialDeposit, Model model) {
         service.openNewAccount(accountType, initialDeposit);
         model.addAttribute("message", "New account created successfully.");
