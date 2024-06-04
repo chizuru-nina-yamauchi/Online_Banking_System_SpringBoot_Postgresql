@@ -230,3 +230,11 @@ Result by Chizuru Yamauchi
 - *After transfer money*
 
 ![pic7](./src/main/resources/pics/pic7.png)
+
+- *Added features to log in and security*
+
+![pic8](./src/main/resources/pics/pic8.png)
+
+![pic9](./src/main/resources/pics/pic9.png)
+
+![pic10](./src/main/resources/pics/pic10.png)
