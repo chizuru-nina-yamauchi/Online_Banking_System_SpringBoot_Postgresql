@@ -3,6 +3,8 @@ package com.example.online_banking_system.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class AppUser {
 
@@ -14,6 +16,17 @@ public class AppUser {
     private String username;
 
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Account> accounts;
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public AppUser() {
     }
@@ -27,6 +40,12 @@ public class AppUser {
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public AppUser(String username, String password, List<Account> accounts) {
+        this.username = username;
+        this.password = password;
+        this.accounts = accounts;
     }
 
     public Long getId() {

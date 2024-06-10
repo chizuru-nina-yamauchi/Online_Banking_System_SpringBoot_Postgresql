@@ -1,5 +1,6 @@
 package com.example.online_banking_system.service;
 
+import com.example.online_banking_system.model.Account;
 import com.example.online_banking_system.model.AppUser;
 import com.example.online_banking_system.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 /**
  *  UserServiceImpl class implements the UserDetailsService interface.
@@ -57,6 +60,27 @@ public class UserServiceImpl implements UserDetailsService{
                 .password(user.getPassword())
                 .authorities("USER")
                 .build();
+    }
+
+    // Extra service to save user with accounts
+    public void saveUserWithAccounts(String userName, String password, String accountType, List<Account> accounts) {
+        if (userName == null || accounts == null) {
+            throw new IllegalArgumentException("Username and accounts list cannot be null");
+        }
+
+        // Create a new user with the given username and encoded(encrypted) password
+        AppUser user = new AppUser(userName, bCryptPasswordEncoder.encode(password));
+
+        // Set the user for each account in the list
+        for (Account account : accounts) {
+            account.setUser(user);
+        }
+
+        // Set the list of accounts for the user
+        user.setAccounts(accounts);
+
+        // Save the user to the database
+        userRepository.save(user);
     }
 
 

@@ -41,5 +41,10 @@ public class UserController {
         return "redirect:/login?success=true";
     }
 
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/login?logout";
+    }
+
 
 }

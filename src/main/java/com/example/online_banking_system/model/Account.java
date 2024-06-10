@@ -2,6 +2,7 @@ package com.example.online_banking_system.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class Account {
     @Id
@@ -15,20 +16,34 @@ public class Account {
 
     private double balance;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
+
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user){
+        this.user = user;
+    }
+
     public Account() {
     }
 
-    public Account(String accountNumber, String accountType, double balance) {
+    public Account(String accountNumber, String accountType, double balance, AppUser user) {
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
+        this.user = user;
     }
 
-    public Account(Long id, String accountNumber, String accountType, double balance) {
+    public Account(Long id, String accountNumber, String accountType, double balance, AppUser user) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
+        this.user = user;
     }
 
     public Long getId() {
